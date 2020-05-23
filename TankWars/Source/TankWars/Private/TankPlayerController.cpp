@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "Math/Vector2D.h"
 #include "TankPlayerController.h"
 
 
@@ -39,6 +39,27 @@ void ATankPlayerController::AimAtCrosshair()
 		return;
 	}
 
+	FVector HitLocation; 
+
+	if (GetSightRayHitLocation(HitLocation))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Crosshair Direction: %s"), *HitLocation.ToString());
+	}
+	
+	
 	//Get world location
-	//
+
+}
+
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OUTHitLocation) const
+{
+	float VpSizeX, VpSizeY;
+
+	FVector2D ScreenLocation = FVector2D(VpSizeX * CrossHairXLocation, VpSizeY * CrossHairYLocation);
+
+	//Find the crosshair position
+	//"De-Project the screen position of the crosshair to a world direction"
+	//Line trace along that look direction and see what we hit upto a range
+
+	return true;
 }
