@@ -18,6 +18,9 @@ class TANKWARS_API ATankPlayerController : public APlayerController
 public:
 	ATank* GetControlledTank() const;  //Tank is a Parent Pawn class to Tank_BP and ATank comes from it
 
-	void BeginPlay() override;  //Not declaring a new method, overriding a virtual one that was defined in a Parent Class i.e. AActor
-	
+	virtual void BeginPlay() override;  //Not declaring a new method, overriding a virtual one that was defined in a Parent Class i.e. AActor
+	virtual void Tick(float DeltaTime) override;
+
+	//Moves tha barrel to align the shot at crosshair and world intersection
+	void AimAtCrosshair(); 
 };

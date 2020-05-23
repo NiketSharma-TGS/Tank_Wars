@@ -20,8 +20,25 @@ void ATankPlayerController::BeginPlay()
 	}
 }
 
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	AimAtCrosshair();
+}
+
 ATank* ATankPlayerController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());   //This should return the pawn the PlayerController is currently possesing
 	
+} 
+
+void ATankPlayerController::AimAtCrosshair()
+{
+	if (!GetControlledTank()) 
+	{
+		return;
+	}
+
+	//Get world location
+	//
 }
