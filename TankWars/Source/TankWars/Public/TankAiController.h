@@ -15,10 +15,17 @@ class TANKWARS_API ATankAiController : public AAIController
 {
 	GENERATED_BODY()
 
-private:
-	ATank* GetAiControlledTank() const;  //ATank because that is what this is returning 
+public:
 	
-	void BeginPlay() override; //Declaring this to use functions at Begin-Play event in the implementaion
+	void AiTarget();
+
+	ATank* GetAiControlledTank() const;  //ATank because that is what this is returning
+
+private:
+	
+	 void BeginPlay() override; //Declaring this to use functions at Begin-Play event in the implementaion
+
+	virtual void Tick(float DeltaTime) override;
 
 	ATank* GetPlayerTank();
 };

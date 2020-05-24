@@ -22,6 +22,14 @@ void ATankAiController::BeginPlay()
 	}
 }
 
+void ATankAiController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	AiTarget();
+
+}
+
 ATank* ATankAiController::GetAiControlledTank() const
 {
 
@@ -39,5 +47,21 @@ ATank* ATankAiController::GetPlayerTank()
 	else
 	{
 		return Cast<ATank>(PlayerTank); //GetsFPController would return a PC, GetPawn returns a Pawn which we need
+	}
+}
+
+void ATankAiController::AiTarget()
+{
+	auto PlayerTank = GetPlayerTank();
+	auto PlayerTankLocation = PlayerTank->GetPawnViewLocation();
+	
+	if (!PlayerTank)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s failed to aim at player Tank"), *PlayerTank->GetName());
+	}
+	
+	else
+	{
+		GetAiControlledTank()->AimAt(PlayerTankLocation);
 	}
 }

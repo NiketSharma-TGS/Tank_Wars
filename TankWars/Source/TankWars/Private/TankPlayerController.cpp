@@ -45,7 +45,7 @@ void ATankPlayerController::AimAtCrosshair()
 
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Crosshair Direction: %s"), *HitLocation.ToString());
+		GetControlledTank()->AimAt(HitLocation); //As GetCotnrolledTank comes from ATank, inheriting from tank class
 	}
 	
 	
