@@ -7,9 +7,7 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class TANKWARS_API ATankPlayerController : public APlayerController
 {
@@ -31,10 +29,14 @@ private:
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 	
 	UPROPERTY(EditAnywhere)
-	float CrossHairXLocation = 0.5; //crosshair is 1/2 of the screen in X
+		float CrossHairXLocation = 0.5; //crosshair is 1/2 of the screen in X
 	
 	UPROPERTY(EditAnywhere)
-	float CrossHairYLocation = 0.3333; //corsshair is 1/3 of the screen in Y
+		float CrossHairYLocation = 0.3333; //corsshair is 1/3 of the screen in Y
 
-	
+
+	bool GetLookVectorHitLocation(FVector& OUTHitLocation, FVector Direction) const;
+
+	UPROPERTY(EditAnywhere)
+		float LineTraceRange = 10000000;
 };
