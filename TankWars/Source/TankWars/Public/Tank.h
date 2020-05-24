@@ -19,7 +19,10 @@ public:
 	void AimAt(FVector HitLocation); 
 
 	UFUNCTION(BlueprintCallable, Category=Setup)
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+		void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+		float LaunchSpeed = 1000 ; //Set a suitable value for Initial Projectile Velocity later
 
 private:
 

@@ -25,7 +25,7 @@ public:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 		
-	void AimAt(FVector HitLocation);
+	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 	UStaticMeshComponent* Barrel = nullptr;
 
