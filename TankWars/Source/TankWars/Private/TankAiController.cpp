@@ -59,7 +59,7 @@ void ATankAiController::AiTarget()
 	
 	if (!PlayerTank)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s failed to aim at player Tank"), *PlayerTank->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("git %s failed to aim at player Tank"), *PlayerTank->GetName());
 	}
 	
 	else

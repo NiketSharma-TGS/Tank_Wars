@@ -23,7 +23,7 @@ public:
 
 private:
 	
-	 void BeginPlay() override; //Declaring this to use functions at Begin-Play event in the implementaion
+	void BeginPlay() override; //Declaring this to use functions at Begin-Play event in the implementaion
 
 	virtual void Tick(float DeltaTime) override;
 
