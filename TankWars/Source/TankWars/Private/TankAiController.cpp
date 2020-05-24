@@ -26,7 +26,9 @@ void ATankAiController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	AiTarget();
+	//Move towards the player
+	AiTarget(); //This aims at the player
+	//Fire if Ready
 
 }
 
@@ -53,7 +55,7 @@ ATank* ATankAiController::GetPlayerTank()
 void ATankAiController::AiTarget()
 {
 	auto PlayerTank = GetPlayerTank();
-	auto PlayerTankLocation = PlayerTank->GetPawnViewLocation();
+	auto PlayerTankLocation = PlayerTank->GetActorLocation();
 	
 	if (!PlayerTank)
 	{
