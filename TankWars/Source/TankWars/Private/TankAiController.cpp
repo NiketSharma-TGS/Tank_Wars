@@ -40,7 +40,7 @@ ATank* ATankAiController::GetAiControlledTank() const
 
 ATank* ATankAiController::GetPlayerTank()
 {
-	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
+	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn(); //Gets the name of FP Camera controller
 	if (!PlayerTank)
 	{
 		return nullptr;
@@ -56,14 +56,16 @@ void ATankAiController::AiTarget()
 {
 	auto PlayerTank = GetPlayerTank();
 	auto PlayerTankLocation = PlayerTank->GetActorLocation();
-	
+	//auto AiTankName = GetOwner()->GetName();
+
 	if (!PlayerTank)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("git %s failed to aim at player Tank"), *PlayerTank->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("Ai failed to aim at player Tank"));
 	}
 	
 	else
 	{
-		GetAiControlledTank()->AimAt(PlayerTankLocation);
+
+		GetAiControlledTank()->AimAt(PlayerTankLocation); //Can't log here because this gets called every tick
 	}
 }
