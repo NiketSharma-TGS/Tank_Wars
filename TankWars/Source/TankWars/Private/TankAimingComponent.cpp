@@ -14,23 +14,11 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
-// Called when the game starts
-void UTankAimingComponent::BeginPlay()
+void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
 {
-	Super::BeginPlay();
-
-	// ...
-	
+	Barrel = BarrelToSet;
 }
 
-
-// Called every frame
-void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	
-}
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
@@ -45,7 +33,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 
 	//Calculate the OUTLaunchVelocity
 
-	if (UGameplayStatics::SuggestProjectileVelocity(
+	bool bHaveProjectileSolution = UGameplayStatics::SuggestProjectileVelocity(
 
 		this,
 		OUTLaunchVelocity,
@@ -55,14 +43,18 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		false,
 		0,
 		0,
-		ESuggestProjVelocityTraceOption::DoNotTrace
+		ESuggestProjVelocityTraceOption::TraceFullPath,
+		FCollisionResponseParams::DefaultResponseParam,
+		TArray<AActor*>(),
+		true
+	);
 
-	))
+	if(bHaveProjectileSolution)
 
 	{
 		auto AimDirection = OUTLaunchVelocity.GetSafeNormal(); //Turns it into a Unit Vector.
-		auto TankName = GetOwner()->GetName();
-		UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *TankName, *AimDirection.ToString());
+		
+		MoveBarrelTowards(AimDirection);
 
 	}
 
@@ -70,7 +62,16 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 }
 
 
-	void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
-	Barrel = BarrelToSet;
+	//Rotate the barrel in X,Y,Z to meet the AimDirection
+
+	auto BarrelRotator = Barrel->GetForwardVector().Rotation(); //X direction vector where the barrel is facing
+	auto AimAsRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - BarrelRotator;
+
+
+																
+																//Change Axis values according to hit location values
+	//with a max. Elevation speed 
 }

@@ -14,17 +14,13 @@ class TANKWARS_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
+
 	UTankAimingComponent();
 
 	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	
-	// Called when the game starts
-	virtual void BeginPlay() override;
-		
+	//Add SetTurretRef() later
+
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 	
@@ -32,4 +28,6 @@ public:
 private: 
 	
 	UStaticMeshComponent* Barrel = nullptr;
+
+	void MoveBarrelTowards(FVector AimDirection); //Move Barrel towards the AimDirection
 };
