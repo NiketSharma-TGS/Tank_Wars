@@ -43,10 +43,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		false,
 		0,
 		0,
-		ESuggestProjVelocityTraceOption::TraceFullPath,
-		FCollisionResponseParams::DefaultResponseParam,
-		TArray<AActor*>(),
-		true
+		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
 
 	if(bHaveProjectileSolution)
@@ -70,8 +67,9 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-
-																
-																//Change Axis values according to hit location values
+	Barrel->Elevate(5); //Calling this through the forward declaration made for TankBarrel
+	
+	//Change Rotation values of Barrel Rotator according to hit Delta Rotator 
 	//with a max. Elevation speed 
+	
 }
