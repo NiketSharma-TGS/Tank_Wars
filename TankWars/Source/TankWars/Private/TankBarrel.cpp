@@ -4,7 +4,7 @@
 #include "TankBarrel.h"
 
 
-void UTankBarrel:: Elevate(float DegPerSec)
+void UTankBarrel:: Elevate(float RelativeSpeed)
 {
 	UE_LOG(LogTemp, Warning, TEXT("All good here!"));
 }
