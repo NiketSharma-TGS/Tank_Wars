@@ -6,5 +6,5 @@
 
 void UTankBarrel:: Elevate(float DegPerSec)
 {
-
+	UE_LOG(LogTemp, Warning, TEXT("All good here!"));
 }
