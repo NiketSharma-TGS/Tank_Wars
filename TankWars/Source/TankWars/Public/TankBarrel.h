@@ -9,16 +9,21 @@
 /**
  * {"DraggedEntityType":"Todoist.ViewModel.ViewEntities.ToDoInListInView, Todoist.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","EntityIds":[376]}
  */
-UCLASS()
+UCLASS(meta = (BlueprintSpawnableComponent))
 class TANKWARS_API UTankBarrel : public UStaticMeshComponent
 {
 	GENERATED_BODY()
-
+	
 public:
 	void Elevate(float DegPerSec);
 
 private:
-	UPROPERTY(EditAnywhere)
-		float MaxDegreePerSecond = 20; //Fix values later
+	UPROPERTY(EditAnywhere, Category =  Setup)
+		float DegreePerSecond = 30; //Fix values later
 
+	UPROPERTY(EditAnywhere, Category = Setup)
+		float MaxDegree = 30; //Fix values later 
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+		float MinDegree = 0; //Fix values later
 };
